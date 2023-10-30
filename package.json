@@ -2,11 +2,30 @@
   "name": "cdns",
   "version": "0.0.1",
   "description": "A CLI tool to automatically edit Cloudflare DNS records.",
-  "main": "./src/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "./dist/src/index.js",
+  "bin": {
+    "cdns": "./dist/src/index.js"
   },
-  "keywords": ["cloud flare", "dns"],
+  "scripts": {
+    "cli": "npm unlink cdns && rm -rf ./dist && npm run build && chmod +x ./dist/src/index.js && npm link",
+    "dev": "npm run cli && tsc -w",
+    "build": "tsc",
+    "format:check": "prettier --check .",
+    "format": "prettier --write .",
+    "lint:check": "eslint .",
+    "lint": "eslint --fix ."
+  },
+  "keywords": [
+    "cloud flare",
+    "dns"
+  ],
   "author": "wajeht",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.8.9",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "commander": "^11.1.0"
+  }
 }
