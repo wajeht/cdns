@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
-import { Command } from '@commander-js/extra-typings';
+import { Command } from 'commander';
 import { version } from '../package.json';
 import { schedule } from './commands/schedule';
+import { add } from './commands/add';
 
 const program = new Command();
 
@@ -14,11 +15,13 @@ program
 program
 	.command('add')
 	.description('add a new configuration')
-	.option('-e, --email <string>', 'cloudflare email')
-	.option('-k, --key <string>', 'cloudflare api key')
-	.action(({ email, key }) => {
-		console.log(email, key);
-	});
+	.option('-i, --interactive', 'interactive mode')
+	.option('-e, --email <string>', 'cloudflare auth email')
+	.option('-k, --key <string>', 'cloudflare auth key')
+	.option('-z, --zone <string>', 'the zone which holds the record')
+	.option('-r, --record <string>', 'the A record which will be updated')
+	.option('-f, --frequency <number>', 'the frequency of the update')
+	.action(async (option) => await add(option));
 
 program.command('schedule').description('schedule auto update action').action(schedule);
 
