@@ -1,2 +1,2 @@
 # 🕸️ cdns
-A CLI tool to automate scheduled jobs for managing Cloudflare DNS records.
+A CLI tool to automatically edit Cloudflare DNS records.
