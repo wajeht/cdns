@@ -7,7 +7,7 @@ const program = new Command();
 
 program
   .name('cdns')
-  .description('A CLI tool to automatically edit Cloudflare DNS records.')
+  .description('a cli tool to automatically update cloudflare dns records')
   .version(version);
 
 if (process.argv.length < 3) {
