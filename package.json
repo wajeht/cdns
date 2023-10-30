@@ -1,25 +1,25 @@
 {
-  "name": "cdns",
-  "version": "0.0.1",
-  "description": "a cli tool to automatically update cloudflare dns records",
-  "main": "./dist/src/index.js",
-  "bin": {
-    "cdns": "./dist/src/index.js"
-  },
-  "scripts": {
-    "cli": "npm unlink cdns && rm -rf ./dist && npm run build && chmod +x ./dist/src/index.js && npm link",
-    "dev": "npm run cli && tsc -w",
-    "build": "tsc",
-    "format:check": "prettier --check .",
-    "format": "prettier --write .",
-    "lint:check": "eslint .",
-    "lint": "eslint --fix ."
-  },
-  "keywords": [
-    "cloud flare",
-    "dns"
-  ],
-  "repository": {
+	"name": "cdns",
+	"version": "0.0.1",
+	"description": "a cli tool to automatically update cloudflare dns records",
+	"main": "./dist/src/index.js",
+	"bin": {
+		"cdns": "./dist/src/index.js"
+	},
+	"scripts": {
+		"cli": "npm unlink cdns && rm -rf ./dist && npm run build && chmod +x ./dist/src/index.js && npm link",
+		"dev": "npm run cli && tsc -w",
+		"build": "tsc",
+		"format:check": "prettier --check .",
+		"format": "prettier --write .",
+		"lint:check": "eslint .",
+		"lint": "eslint --fix ."
+	},
+	"keywords": [
+		"cloud flare",
+		"dns"
+	],
+	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/wajeht/cdns.git"
 	},
@@ -30,14 +30,20 @@
 		"registry": "https://registry.npmjs.org/",
 		"access": "public"
 	},
-  "homepage": "https://github.com/wajeht/cdns#readme",
+	"homepage": "https://github.com/wajeht/cdns#readme",
 	"author": "@wajeht",
-  "license": "MIT",
-  "devDependencies": {
-    "@types/node": "^20.8.9",
-    "typescript": "^5.2.2"
-  },
-  "dependencies": {
-    "commander": "^11.1.0"
-  }
+	"license": "MIT",
+	"devDependencies": {
+		"@types/node": "^20.8.9",
+		"@typescript-eslint/eslint-plugin": "^6.9.0",
+		"@typescript-eslint/parser": "^6.9.0",
+		"eslint": "^8.52.0",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-plugin-prettier": "^5.0.1",
+		"prettier": "^3.0.3",
+		"typescript": "^5.2.2"
+	},
+	"dependencies": {
+		"commander": "^11.1.0"
+	}
 }
