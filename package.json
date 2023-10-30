@@ -1,8 +1,8 @@
 {
   "name": "cdns",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "description": "A CLI tool to automate scheduled jobs for managing Cloudflare DNS records.",
+  "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
