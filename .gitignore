@@ -1,3 +1,5 @@
+src/database/dev.db
+
 # Logs
 logs
 *.log
