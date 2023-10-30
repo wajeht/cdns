@@ -13,7 +13,14 @@
 		"format:check": "prettier --check .",
 		"format": "prettier --write .",
 		"lint:check": "eslint .",
-		"lint": "eslint --fix ."
+		"lint": "eslint --fix .",
+		"db:push": "npx prisma db push",
+		"db:generate": "npx prisma generate",
+		"db:migrate": "npx prisma migrate dev",
+		"db:reset": "npx prisma migrate reset --force"
+	},
+	"prisma": {
+		"schema": "./src/database/schema.prisma"
 	},
 	"keywords": [
 		"cloud flare",
@@ -41,9 +48,11 @@
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-prettier": "^5.0.1",
 		"prettier": "^3.0.3",
+		"prisma": "^5.5.2",
 		"typescript": "^5.2.2"
 	},
 	"dependencies": {
+		"@prisma/client": "^5.5.2",
 		"axios": "^1.6.0",
 		"commander": "^11.1.0"
 	}
