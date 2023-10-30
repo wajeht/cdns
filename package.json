@@ -1,7 +1,7 @@
 {
   "name": "cdns",
   "version": "0.0.1",
-  "description": "A CLI tool to automatically edit Cloudflare DNS records.",
+  "description": "a cli tool to automatically update cloudflare dns records",
   "main": "./dist/src/index.js",
   "bin": {
     "cdns": "./dist/src/index.js"
@@ -19,7 +19,19 @@
     "cloud flare",
     "dns"
   ],
-  "author": "wajeht",
+  "repository": {
+		"type": "git",
+		"url": "git+https://github.com/wajeht/cdns.git"
+	},
+	"bugs": {
+		"url": "https://github.com/wajeht/cdns/issues"
+	},
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org/",
+		"access": "public"
+	},
+  "homepage": "https://github.com/wajeht/cdns#readme",
+	"author": "@wajeht",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.8.9",

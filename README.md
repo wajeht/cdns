@@ -1,2 +1,2 @@
 # 🕸️ cdns
-A CLI tool to automatically edit Cloudflare DNS records.
+a cli tool to automatically update cloudflare dns records
