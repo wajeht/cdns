@@ -3,44 +3,45 @@ import { input } from '@inquirer/prompts';
 
 type Params = {
 	interactive?: boolean;
-	email: string;
-	key: string;
-	zone: string;
-	record: string;
+	cloudflare_email: string;
+	cloudflare_api_token: string;
+	zone_name: string;
+	dns_record: string;
 	frequency: string;
 };
 
 export async function add(params: Params) {
-	let { email, key, zone, record, frequency, interactive } = params;
+	let { cloudflare_email, cloudflare_api_token, zone_name, dns_record, frequency, interactive } =
+		params;
 
 	let sure = false;
 
 	while (!sure) {
 		if (interactive) {
-			if (!email) {
-				email = await input({
-					message: 'Enter your cloudflare email address',
+			if (!cloudflare_email) {
+				cloudflare_email = await input({
+					message: 'Enter your cloudflare cloudflare_email address',
 					validate: (value) => value.length !== 0,
 				});
 			}
 
-			if (!key) {
-				key = await input({
+			if (!cloudflare_api_token) {
+				cloudflare_api_token = await input({
 					message: 'Enter your cloudflare access token',
 					validate: (value) => value.length !== 0,
 				});
 			}
 
-			if (!zone) {
-				zone = await input({
-					message: 'Enter zone',
+			if (!zone_name) {
+				zone_name = await input({
+					message: 'Enter zone_name',
 					validate: (value) => value.length !== 0,
 				});
 			}
 
-			if (!record) {
-				record = await input({
-					message: 'Enter record',
+			if (!dns_record) {
+				dns_record = await input({
+					message: 'Enter dns_record',
 					validate: (value) => value.length !== 0,
 				});
 			}
@@ -53,14 +54,14 @@ export async function add(params: Params) {
 			}
 		}
 
-		if (!email || !key || !zone || !record || !frequency) {
+		if (!cloudflare_email || !cloudflare_api_token || !zone_name || !dns_record || !frequency) {
 			console.log();
 			console.error('Missing required parameters');
 			console.log();
 			return process.exit(1);
 		}
 
-		console.table([{ email, key, zone, record, frequency }]);
+		console.table([{ cloudflare_email, cloudflare_api_token, zone_name, dns_record, frequency }]);
 
 		sure =
 			(await input({
@@ -71,14 +72,14 @@ export async function add(params: Params) {
 		if (!sure) {
 			const modify = await input({
 				message:
-					'What do you want to change? \nemail (e), key (k), zone (z), record (r), frequency (f)?',
+					'What do you want to change? \nemail (e), cloudflare_api_token (k), zone_name (z), dns_record (r), frequency (f)?',
 				validate: (value) => ['e', 'k', 'z', 'r', 'f'].includes(value) === true,
 			});
 
-			email = modify === 'e' ? '' : email;
-			key = modify === 'k' ? '' : key;
-			zone = modify === 'z' ? '' : zone;
-			record = modify === 'r' ? '' : record;
+			cloudflare_email = modify === 'e' ? '' : cloudflare_email;
+			cloudflare_api_token = modify === 'k' ? '' : cloudflare_api_token;
+			zone_name = modify === 'z' ? '' : zone_name;
+			dns_record = modify === 'r' ? '' : dns_record;
 			frequency = modify === 'f' ? '' : frequency;
 		}
 	}
@@ -86,10 +87,10 @@ export async function add(params: Params) {
 	await db.configuration
 		.create({
 			data: {
-				email,
-				key,
-				zone,
-				record,
+				cloudflare_email,
+				cloudflare_api_token,
+				zone_name,
+				dns_record,
 				frequency: parseInt(frequency) || 60,
 			},
 		})

@@ -16,10 +16,10 @@ program
 	.command('add')
 	.description('add a new configuration')
 	.option('-i, --interactive', 'interactive mode')
-	.option('-e, --email <string>', 'cloudflare auth email')
-	.option('-k, --key <string>', 'cloudflare auth key')
-	.option('-z, --zone <string>', 'the zone which holds the record')
-	.option('-r, --record <string>', 'the A record which will be updated')
+	.option('-e, --cloudflare-email <string>', 'cloudflare auth email')
+	.option('-k, --cloudflare-api-token <string>', 'cloudflare api token')
+	.option('-z, --zone-name <string>', 'the zone which holds the record')
+	.option('-r, --dns-record <string>', 'the A record which will be updated')
 	.option('-f, --frequency <number>', 'the frequency of the update')
 	.action(async (option) => await add(option));
 

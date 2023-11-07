@@ -1,4 +1,5 @@
 import db from '../database/db';
+import { getIPAddress } from '../utils/utils';
 
 export async function schedule() {
 	const configuration = await db.configuration.findFirst();
