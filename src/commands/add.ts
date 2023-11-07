@@ -9,7 +9,9 @@ type Params = {
 	frequency: string;
 };
 
-export async function add({ email, key, zone, record, frequency, interactive }: Params) {
+export async function add(params: Params) {
+	const { email, key, zone, record, frequency, interactive } = params;
+
 	if (interactive) {
 		console.log();
 		console.error('Interactive mode is not implemented yet');
