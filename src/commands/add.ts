@@ -55,8 +55,17 @@ export async function add(params: Params) {
 		}
 
 		if (!cloudflare_email || !cloudflare_api_token || !zone_name || !dns_record || !frequency) {
+			const requiredParams = {
+				cloudflare_email,
+				cloudflare_api_token,
+				zone_name,
+				dns_record,
+				frequency,
+			};
+
+			const missingParams = Object.keys(requiredParams).filter((param) => !requiredParams[param]);
 			console.log();
-			console.error('Missing required parameters');
+			console.error('Missing required parameters:', missingParams.join(', '));
 			console.log();
 			return process.exit(1);
 		}
@@ -72,12 +81,12 @@ export async function add(params: Params) {
 		if (!sure) {
 			const modify = await input({
 				message:
-					'What do you want to change? \nemail (e), cloudflare_api_token (k), zone_name (z), dns_record (r), frequency (f)?',
+					'What do you want to change? \nemail (e), cloudflare_api_token (a), zone_name (z), dns_record (r), frequency (f)?',
 				validate: (value) => ['e', 'k', 'z', 'r', 'f'].includes(value) === true,
 			});
 
 			cloudflare_email = modify === 'e' ? '' : cloudflare_email;
-			cloudflare_api_token = modify === 'k' ? '' : cloudflare_api_token;
+			cloudflare_api_token = modify === 'a' ? '' : cloudflare_api_token;
 			zone_name = modify === 'z' ? '' : zone_name;
 			dns_record = modify === 'r' ? '' : dns_record;
 			frequency = modify === 'f' ? '' : frequency;
