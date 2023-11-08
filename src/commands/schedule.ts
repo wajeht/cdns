@@ -15,7 +15,9 @@ async function schedule() {
 
 	const cronExpression = timeToCron(configuration.frequency);
 
+	console.log(`scheduling cron for ${configuration.id}...`);
 	cron.schedule(cronExpression, async () => {
+		console.log(`cron was start for ${configuration.id}...`);
 		const axiosInstance = axios.create({
 			baseURL: 'https://api.cloudflare.com/client/v4',
 			headers: {
@@ -28,6 +30,7 @@ async function schedule() {
 		let currentIpAddress: string = '';
 
 		try {
+			console.log('fetching to check current ip address...');
 			currentIpAddress = (await getIPAddress()).trim();
 		} catch (error) {
 			console.log();
@@ -40,6 +43,7 @@ async function schedule() {
 		let zoneInfo: ZoneInfo = {} as ZoneInfo;
 
 		try {
+			console.log('fetching cloudflare zone info...');
 			zoneInfo = await cloudflareApi.getZoneByName(configuration.zone_name);
 		} catch (error) {
 			console.log();
@@ -62,6 +66,7 @@ async function schedule() {
 		let dnsRecords: any = {};
 
 		try {
+			console.log('fetching dns records...');
 			dnsRecords = await cloudflareApi.getDnsRecords(zoneInfo.result[0].id);
 			dnsRecords = dnsRecords.result.filter((r: { type: string }) => r.type === 'A');
 		} catch (error) {
@@ -76,6 +81,7 @@ async function schedule() {
 		for (const r of dnsRecords) {
 			if (r.content !== currentIpAddress) {
 				try {
+					console.log('updating dns records...');
 					await cloudflareApi.updateContent(zoneInfo.result[0].id, r.id, currentIpAddress);
 				} catch (error) {
 					console.log();
@@ -92,11 +98,8 @@ async function schedule() {
 				return process.exit(1);
 			}
 		}
-
-		return process.exit(0);
 	});
-
-	return process.exit(0);
+	console.log(`cron has been scheduled for ${configuration.id}...`);
 }
 
 schedule();
