@@ -5,7 +5,7 @@ import { version } from '../package.json';
 import { schedule } from './commands/schedule';
 import { add } from './commands/add';
 import db from './database/db';
-import { exec } from 'child_process';
+import { spawn } from 'child_process';
 
 const program = new Command();
 
@@ -37,6 +37,12 @@ program
 			console.log();
 			return process.exit(1);
 		}
+
+		spawn(`./src/scripts/start.sh`, {
+			shell: true,
+			stdio: 'inherit',
+			env: process.env,
+		});
 	});
 
 if (process.argv.length < 3) {
