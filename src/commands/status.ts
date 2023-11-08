@@ -11,4 +11,5 @@ export async function status() {
 	}
 
 	console.table([configuration]);
+	return process.exit(0);
 }

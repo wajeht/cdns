@@ -17,11 +17,24 @@ export async function stop() {
 			return process.exit(1);
 		}
 
-		console.log('x');
-		spawn(`pm2 stop cdns && pm2 delete cdns && pm2 save --force`, {
+		const stopped = spawn(`pm2 stop cdns && pm2 delete cdns && pm2 save --force`, {
 			shell: true,
-			stdio: 'inherit',
+			stdio: 'pipe',
 			env: process.env,
+		});
+
+		stopped.stdout.on('data', (data) => {
+			const output = data.toString();
+			if (!output.includes('cdns')) {
+				console.log('stopped cdns process!');
+				return process.exit(0);
+			}
+		});
+
+		stopped.stderr.on('data', (data) => {
+			const output = data.toString();
+			console.log('something went wrong while stopping cdns process', output);
+			return process.exit(1);
 		});
 	});
 }
