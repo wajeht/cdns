@@ -119,7 +119,11 @@ export async function add(params: Params) {
 			},
 		})
 		.then((res) => {
-			console.log(res);
+			console.table([res]);
+			console.log('The above credentials has been added successfully!');
+		})
+		.catch((err) => {
+			console.error('Something went wrong while adding credentials!');
 		});
 
 	return process.exit(0);
