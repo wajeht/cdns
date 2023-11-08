@@ -2,9 +2,8 @@
 
 import { Command } from 'commander';
 import { version } from '../package.json';
-import { schedule } from './commands/schedule';
 import { add } from './commands/add';
-import db from './database/db';
+import { db } from './database/db';
 import { spawn } from 'child_process';
 
 const program = new Command();

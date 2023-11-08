@@ -1,6 +1,6 @@
-import db from '../database/db';
-import axios from 'axios';
-import { getIPAddress, ZoneInfo, CloudflareApi, CloudflareApiClient } from '../utils/utils';
+import axios, { AxiosError } from 'axios';
+import { db } from '../database/db';
+import { getIPAddress, ZoneInfo, CloudflareApi, CloudflareApiClient } from '../utils';
 
 export async function schedule() {
 	const configuration = await db.configuration.findFirst();
@@ -40,6 +40,8 @@ export async function schedule() {
 	} catch (error) {
 		console.log();
 		console.error('cannot grab zoneInfo!');
+		// @ts-ignore
+		console.table((error as AxiosError)?.response?.data?.errors);
 		console.log();
 		return process.exit(1);
 	}
@@ -47,6 +49,8 @@ export async function schedule() {
 	if (!zoneInfo.result[0]) {
 		console.log();
 		console.error('Zone info does not exit!');
+		// @ts-ignore
+		console.table((error as AxiosError)?.response?.data?.errors);
 		console.log();
 		return process.exit(1);
 	}
@@ -58,7 +62,9 @@ export async function schedule() {
 		dnsRecords = dnsRecords.result.filter((r: { type: string }) => r.type === 'A');
 	} catch (error) {
 		console.log();
-		console.error('cannot grab zoneInfo!');
+		console.error('cannot grab dnsRecords!');
+		// @ts-ignore
+		console.table((error as AxiosError)?.response?.data?.errors);
 		console.log();
 		return process.exit(1);
 	}
@@ -70,6 +76,8 @@ export async function schedule() {
 			} catch (error) {
 				console.log();
 				console.error('something went wrong while updating record!');
+				// @ts-ignore
+				console.table((error as AxiosError)?.response?.data?.errors);
 				console.log();
 				return process.exit(1);
 			}

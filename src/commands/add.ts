@@ -1,6 +1,6 @@
-import db from '../database/db';
+import { db } from '../database/db';
 import { input } from '@inquirer/prompts';
-import { getIPAddress } from '../utils/utils';
+import { getIPAddress } from '../utils';
 
 type Params = {
 	interactive?: boolean;

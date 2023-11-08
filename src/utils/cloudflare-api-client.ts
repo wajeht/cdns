@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import { AxiosInstance, AxiosResponse } from 'axios';
 
 export interface ZoneInfo {
 	result: { id: string }[];
@@ -40,9 +40,4 @@ export class CloudflareApiClient implements CloudflareApi {
 		);
 		return response.data;
 	}
-}
-
-export async function getIPAddress(): Promise<string> {
-	const { data } = await axios.get('https://checkip.amazonaws.com');
-	return data.trim();
 }
