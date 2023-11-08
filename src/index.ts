@@ -4,6 +4,8 @@ import { Command } from 'commander';
 import { version } from '../package.json';
 import { schedule } from './commands/schedule';
 import { add } from './commands/add';
+import db from './database/db';
+import { exec } from 'child_process';
 
 const program = new Command();
 
@@ -23,7 +25,19 @@ program
 	.option('-f, --frequency <number>', 'the frequency of the update')
 	.action(async (option) => await add(option));
 
-program.command('schedule').description('schedule auto update action').action(schedule);
+program
+	.command('schedule')
+	.description('schedule auto update action')
+	.action(async () => {
+		const configuration = await db.configuration.findFirst();
+
+		if (!configuration) {
+			console.log();
+			console.error('No configuration found');
+			console.log();
+			return process.exit(1);
+		}
+	});
 
 if (process.argv.length < 3) {
 	console.log();

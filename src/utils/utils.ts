@@ -1,7 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
-import db from '../database/db';
 
-interface ZoneInfo {
+export interface ZoneInfo {
 	result: { id: string }[];
 }
 
@@ -40,49 +39,6 @@ export class CloudflareApiClient implements CloudflareApi {
 			},
 		);
 		return response.data;
-	}
-}
-
-async function main() {
-	const configuration = await db.configuration.findFirst();
-
-	if (!configuration) {
-		console.log();
-		console.error('no configuration found');
-		console.log();
-		return process.exit(1);
-	}
-
-	console.log();
-	console.table([configuration]);
-	console.log();
-
-	const cloudflare_email = '';
-	const cloudflare_api_token = '';
-	const zoneName = '';
-
-	const axiosInstance = axios.create({
-		baseURL: 'https://api.cloudflare.com/client/v4',
-		headers: {
-			'X-Auth-Email': cloudflare_email,
-			Authorization: `Bearer ${cloudflare_api_token}`,
-			'Content-Type': 'application/json',
-		},
-	});
-
-	const cloudflareApi: CloudflareApi = new CloudflareApiClient(axiosInstance);
-	const zoneInfo: ZoneInfo = await cloudflareApi.getZoneByName(zoneName);
-
-	if (zoneInfo.result[0]) {
-		let dnsRecords = await cloudflareApi.getDnsRecords(zoneInfo.result[0].id);
-		dnsRecords = dnsRecords.result.filter((r: { type: string }) => r.type === 'A');
-
-		const rids = dnsRecords.map((d: { id: string }) => d.id);
-
-		for (const id of rids) {
-			const x = await cloudflareApi.updateContent(zoneInfo.result[0].id, id, '50.26.13.170');
-			console.log(x);
-		}
 	}
 }
 

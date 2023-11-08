@@ -88,7 +88,7 @@ export async function add(params: Params) {
 			const modify = await input({
 				message:
 					'What do you want to change? \nemail (e), cloudflare_api_token (a), zone_name (z), ip_address (p), frequency (f)?',
-				validate: (value) => ['e', 'k', 'z', 'r', 'f'].includes(value) === true,
+				validate: (value) => ['e', 'a', 'z', 'r', 'f'].includes(value) === true,
 			});
 
 			cloudflare_email = modify === 'e' ? '' : cloudflare_email;
