@@ -16,9 +16,9 @@ if (!fs.existsSync(databasePath)) {
 }
 
 const envPath = path.resolve(path.join(process.cwd(), '.env'));
-const envContent = `DATABASE_URL="file:${databasePath}"\nNODE_ENV="production"`;
 
 if (!fs.existsSync(envPath)) {
+	const envContent = `DATABASE_URL="file:${databasePath}"\nNODE_ENV="production"`;
 	fs.writeFileSync(envPath, envContent);
 }
 
