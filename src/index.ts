@@ -3,6 +3,7 @@
 import { Command } from 'commander';
 import { version } from '../package.json';
 import { add } from './commands/add';
+import { status } from './commands/status';
 import { db } from './database/db';
 import { spawn } from 'child_process';
 
@@ -23,6 +24,11 @@ program
 	.option('-p, --ip_address <string>', 'the ip address of current server')
 	.option('-f, --frequency <number>', 'the frequency of the update')
 	.action(async (option) => await add(option));
+
+program
+	.command('status')
+	.description('status of cdns')
+	.action(async () => await status());
 
 program
 	.command('schedule')
