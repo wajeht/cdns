@@ -4,6 +4,7 @@ import { db } from './database/db';
 import { Command } from 'commander';
 import { add } from './commands/add';
 import { log } from './commands/log';
+import { stop } from './commands/stop';
 import { spawn } from 'child_process';
 import { version } from '../package.json';
 import { status } from './commands/status';
@@ -32,6 +33,7 @@ program
 	.action(async () => await status());
 
 program.command('log').description('view log of cdns process').action(log);
+program.command('stop').description('stop cdns process').action(stop);
 
 program
 	.command('schedule')
