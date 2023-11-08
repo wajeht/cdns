@@ -15,10 +15,10 @@ async function schedule() {
 
 	const cronExpression = timeToCron(configuration.frequency);
 
-	console.log(`scheduling cron for id: ${configuration.id}`);
+	console.log(`scheduling cron for id: ${configuration.id}!`);
 
 	cron.schedule(cronExpression, async () => {
-		console.log(`cron was start for id: ${configuration.id}`);
+		console.log(`cron was start for id: ${configuration.id}!`);
 
 		const axiosInstance = axios.create({
 			baseURL: 'https://api.cloudflare.com/client/v4',
@@ -104,8 +104,9 @@ async function schedule() {
 				return process.exit(1);
 			}
 		}
+		console.log(`done cron process for id: ${configuration.id}!`);
 	});
-	console.log(`cron has been scheduled for ${configuration.id}...`);
+	console.log(`cron has been scheduled for id: ${configuration.id}!`);
 }
 
 schedule();
