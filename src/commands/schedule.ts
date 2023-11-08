@@ -15,9 +15,11 @@ async function schedule() {
 
 	const cronExpression = timeToCron(configuration.frequency);
 
-	console.log(`scheduling cron for ${configuration.id}...`);
+	console.log(`scheduling cron for id: ${configuration.id}`);
+
 	cron.schedule(cronExpression, async () => {
-		console.log(`cron was start for ${configuration.id}...`);
+		console.log(`cron was start for id: ${configuration.id}`);
+
 		const axiosInstance = axios.create({
 			baseURL: 'https://api.cloudflare.com/client/v4',
 			headers: {
@@ -32,6 +34,7 @@ async function schedule() {
 		try {
 			console.log('fetching to check current ip address...');
 			currentIpAddress = (await getIPAddress()).trim();
+			console.log('done fetching to check current ip address!');
 		} catch (error) {
 			console.log();
 			console.error('cannot grab current ip address!');
@@ -45,6 +48,7 @@ async function schedule() {
 		try {
 			console.log('fetching cloudflare zone info...');
 			zoneInfo = await cloudflareApi.getZoneByName(configuration.zone_name);
+			console.log('done fetching cloudflare zone info!');
 		} catch (error) {
 			console.log();
 			console.error('cannot grab zoneInfo!');
@@ -68,6 +72,7 @@ async function schedule() {
 		try {
 			console.log('fetching dns records...');
 			dnsRecords = await cloudflareApi.getDnsRecords(zoneInfo.result[0].id);
+			console.log('done fetching dns records!');
 			dnsRecords = dnsRecords.result.filter((r: { type: string }) => r.type === 'A');
 		} catch (error) {
 			console.log();
@@ -83,6 +88,7 @@ async function schedule() {
 				try {
 					console.log('updating dns records...');
 					await cloudflareApi.updateContent(zoneInfo.result[0].id, r.id, currentIpAddress);
+					console.log('done updating dns records!');
 				} catch (error) {
 					console.log();
 					console.error('something went wrong while updating record!');
