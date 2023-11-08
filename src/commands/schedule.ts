@@ -86,12 +86,12 @@ async function schedule() {
 		for (const r of dnsRecords) {
 			if (r.content !== currentIpAddress) {
 				try {
-					console.log('updating dns records...');
+					console.log(`updating dns records for id: ${r.id}!`);
 					await cloudflareApi.updateContent(zoneInfo.result[0].id, r.id, currentIpAddress);
-					console.log('done updating dns records!');
+					console.log(`done updating dns records for id: ${r.id}!`);
 				} catch (error) {
 					console.log();
-					console.error('something went wrong while updating record!');
+					console.error(`something went wrong while updating record for id: ${r.id}!`);
 					// @ts-ignore
 					console.table((error as AxiosError)?.response?.data?.errors);
 					console.log();
@@ -99,7 +99,7 @@ async function schedule() {
 				}
 			} else {
 				console.log();
-				console.log('No need to update!');
+				console.log(`no need to update dns records for id: ${r.id}!`);
 				console.log();
 				return process.exit(1);
 			}
