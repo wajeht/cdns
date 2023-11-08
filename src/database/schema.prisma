@@ -8,10 +8,10 @@ datasource db {
 }
 
 model Configuration {
-  id                   Int    @id @default(autoincrement())
-  cloudflare_email     String @unique
-  cloudflare_api_token String
-  zone_name            String
-  dns_record           String
-  frequency            Int
+  id                   Int     @id @default(autoincrement())
+  cloudflare_email     String  @unique
+  cloudflare_api_token String  @unique
+  zone_name            String  @unique
+  ip_address           String?
+  frequency            Int     @default(60)
 }

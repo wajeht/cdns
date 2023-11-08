@@ -19,7 +19,7 @@ program
 	.option('-e, --cloudflare_email <string>', 'cloudflare auth email')
 	.option('-a, --cloudflare_api_token <string>', 'cloudflare api token')
 	.option('-z, --zone_name <string>', 'the zone which holds the record')
-	.option('-d, --dns_record <string>', 'the A record which will be updated')
+	.option('-p, --ip_address <string>', 'the ip address of current server')
 	.option('-f, --frequency <number>', 'the frequency of the update')
 	.action(async (option) => await add(option));
 
