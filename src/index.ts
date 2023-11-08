@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
-import { Command } from 'commander';
-import { version } from '../package.json';
-import { add } from './commands/add';
-import { status } from './commands/status';
 import { db } from './database/db';
+import { Command } from 'commander';
+import { add } from './commands/add';
+import { log } from './commands/log';
 import { spawn } from 'child_process';
+import { version } from '../package.json';
+import { status } from './commands/status';
 
 const program = new Command();
 
@@ -29,6 +30,8 @@ program
 	.command('status')
 	.description('status of cdns')
 	.action(async () => await status());
+
+program.command('log').description('view log of cdns process').action(log);
 
 program
 	.command('schedule')

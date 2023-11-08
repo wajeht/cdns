@@ -1,6 +1,6 @@
 import cron from 'node-cron';
-import axios, { AxiosError } from 'axios';
 import { db } from '../database/db';
+import axios, { AxiosError } from 'axios';
 import { getIPAddress, ZoneInfo, CloudflareApi, CloudflareApiClient, timeToCron } from '../utils';
 
 async function schedule() {
