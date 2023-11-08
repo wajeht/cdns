@@ -34,16 +34,14 @@ if (fs.existsSync(envPath)) {
 	}
 }
 
+exec('npm run db:migrate:deploy', (error, stdout, stderr) => {
+	if (error) console.log(error);
+	if (stdout) console.log(stdout);
+	if (stderr) console.log(stderr);
+});
+
 exec('npm run db:generate', (error, stdout, stderr) => {
-	if (error) {
-		console.log(error);
-	}
-
-	if (stdout) {
-		console.log(stdout);
-	}
-
-	if (stderr) {
-		console.log(stderr);
-	}
+	if (error) console.log(error);
+	if (stdout) console.log(stdout);
+	if (stderr) console.log(stderr);
 });
