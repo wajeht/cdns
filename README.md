@@ -1,11 +1,9 @@
 # 🕸️ cdns
 
-a cli tool to automatically update cloudflare dns records
-
 [![Node.js CI](https://github.com/wajeht/cdns/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/wajeht/cdns/actions/workflows/ci.yml) ![npm](https://img.shields.io/npm/dw/%40wajeht%2Fcdns)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/wajeht/type/blob/main/LICENSE) [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/wajeht/cdns) [![npm](https://img.shields.io/npm/v/%40wajeht%2Fcdns)](https://www.npmjs.com/package/@wajeht/cdns)
 
-`cdns` is a cli tool to automatically update cloudflare dns records
+`cdns` is a cli tool to schedule automatic updates for cloudflare dns records
 
 ## 🛠️ Installation
 
