@@ -1,78 +1,78 @@
 {
-    "name": "@wajeht/cdns",
-    "version": "1.1.0",
-    "description": "a cli tool to automatically update cloudflare dns records",
-    "main": "./dist/src/index.js",
-    "bin": {
-        "cdns": "./dist/src/index.js"
-    },
-    "scripts": {
-        "postinstall": "npm run build && node ./dist/src/scripts/post-install.js",
-        "cli": "npm unlink cdns && rm -rf ./dist && npm run build && chmod +x ./dist/src/index.js && npm link",
-        "dev": "npm run cli && tsc -w",
-        "build": "tsc --noImplicitAny",
-        "publish": "chmod +x ./src/scripts/publish.sh && ./src/scripts/publish.sh",
-        "format:check": "prettier --check .",
-        "format": "prettier --write .",
-        "lint:check": "eslint .",
-        "lint": "eslint --fix .",
-        "test:watch": "vitest",
-        "test": "vitest --run",
-        "db:push": "npx prisma db push",
-        "db:generate": "npx prisma generate",
-        "db:migrate": "npx prisma migrate dev",
-        "db:migrate:deploy": "npx prisma migrate deploy",
-        "db:reset": "npx prisma migrate reset --force"
-    },
-    "prisma": {
-        "schema": "./src/database/schema.prisma"
-    },
-    "keywords": [
-        "cloud flare",
-        "dns"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/wajeht/cdns.git"
-    },
-    "bugs": {
-        "url": "https://github.com/wajeht/cdns/issues"
-    },
-    "publishConfig": {
-        "registry": "https://registry.npmjs.org/",
-        "access": "public"
-    },
-    "homepage": "https://github.com/wajeht/cdns#readme",
-    "author": "@wajeht",
-    "license": "MIT",
-    "devDependencies": {
-        "@commitlint/cli": "^18.2.0",
-        "@commitlint/config-conventional": "^18.1.0",
-        "@semantic-release/changelog": "^6.0.3",
-        "@semantic-release/commit-analyzer": "^11.1.0",
-        "@semantic-release/git": "^10.0.1",
-        "@semantic-release/github": "^9.2.2",
-        "@semantic-release/npm": "^11.0.1",
-        "@semantic-release/release-notes-generator": "^12.1.0",
-        "@types/node": "^20.9.0",
-        "@types/node-cron": "^3.0.11",
-        "@typescript-eslint/eslint-plugin": "^6.10.0",
-        "@typescript-eslint/parser": "^6.10.0",
-        "eslint": "^8.53.0",
-        "eslint-config-prettier": "^9.0.0",
-        "eslint-plugin-prettier": "^5.0.1",
-        "husky": "^8.0.3",
-        "prettier": "^3.0.3",
-        "prisma": "^5.5.2",
-        "semantic-release": "^22.0.7",
-        "typescript": "^5.2.2",
-        "vitest": "^0.34.6"
-    },
-    "dependencies": {
-        "@inquirer/prompts": "^3.2.0",
-        "@prisma/client": "^5.5.2",
-        "axios": "^1.6.0",
-        "commander": "^11.1.0",
-        "node-cron": "^3.0.3"
-    }
+	"name": "@wajeht/cdns",
+	"version": "1.1.2",
+	"description": "a cli tool to automatically update cloudflare dns records",
+	"main": "./dist/src/index.js",
+	"bin": {
+		"cdns": "./dist/src/index.js"
+	},
+	"scripts": {
+		"postinstall": "node ./dist/src/scripts/post-install.js",
+		"cli": "npm unlink cdns && rm -rf ./dist && npm run build && chmod +x ./dist/src/index.js && npm link",
+		"dev": "npm run cli && tsc -w",
+		"build": "tsc --noImplicitAny",
+		"publish": "chmod +x ./src/scripts/publish.sh && ./src/scripts/publish.sh",
+		"format:check": "prettier --check .",
+		"format": "prettier --write .",
+		"lint:check": "eslint .",
+		"lint": "eslint --fix .",
+		"test:watch": "vitest",
+		"test": "vitest --run",
+		"db:push": "npx prisma db push",
+		"db:generate": "npx prisma generate",
+		"db:migrate": "npx prisma migrate dev",
+		"db:migrate:deploy": "npx prisma migrate deploy",
+		"db:reset": "npx prisma migrate reset --force"
+	},
+	"prisma": {
+		"schema": "./src/database/schema.prisma"
+	},
+	"keywords": [
+		"cloud flare",
+		"dns"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/wajeht/cdns.git"
+	},
+	"bugs": {
+		"url": "https://github.com/wajeht/cdns/issues"
+	},
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org/",
+		"access": "public"
+	},
+	"homepage": "https://github.com/wajeht/cdns#readme",
+	"author": "@wajeht",
+	"license": "MIT",
+	"devDependencies": {
+		"@commitlint/cli": "^18.2.0",
+		"@commitlint/config-conventional": "^18.1.0",
+		"@semantic-release/changelog": "^6.0.3",
+		"@semantic-release/commit-analyzer": "^11.1.0",
+		"@semantic-release/git": "^10.0.1",
+		"@semantic-release/github": "^9.2.2",
+		"@semantic-release/npm": "^11.0.1",
+		"@semantic-release/release-notes-generator": "^12.1.0",
+		"@types/node": "^20.9.0",
+		"@types/node-cron": "^3.0.11",
+		"@typescript-eslint/eslint-plugin": "^6.10.0",
+		"@typescript-eslint/parser": "^6.10.0",
+		"eslint": "^8.53.0",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-plugin-prettier": "^5.0.1",
+		"husky": "^8.0.3",
+		"prettier": "^3.0.3",
+		"prisma": "^5.5.2",
+		"semantic-release": "^22.0.7",
+		"typescript": "^5.2.2",
+		"vitest": "^0.34.6"
+	},
+	"dependencies": {
+		"@inquirer/prompts": "^3.2.0",
+		"@prisma/client": "^5.5.2",
+		"axios": "^1.6.0",
+		"commander": "^11.1.0",
+		"node-cron": "^3.0.3"
+	}
 }
