@@ -1,9 +1,8 @@
 ## [1.1.7](https://github.com/wajeht/cdns/compare/v1.1.6...v1.1.7) (2023-11-09)
 
-
 ### Bug Fixes
 
-* add prisma to prod deps ([f824be5](https://github.com/wajeht/cdns/commit/f824be5466e979e1a21126deaa8aa46d887ec514))
+- add prisma to prod deps ([f824be5](https://github.com/wajeht/cdns/commit/f824be5466e979e1a21126deaa8aa46d887ec514))
 
 ## [1.1.6](https://github.com/wajeht/cdns/compare/v1.1.5...v1.1.6) (2023-11-09)
 
