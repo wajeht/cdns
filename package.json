@@ -63,7 +63,6 @@
 		"eslint-plugin-prettier": "^5.0.1",
 		"husky": "^8.0.3",
 		"prettier": "^3.0.3",
-		"prisma": "^5.5.2",
 		"semantic-release": "^22.0.7",
 		"typescript": "^5.2.2",
 		"vitest": "^0.34.6"
@@ -73,6 +72,7 @@
 		"@prisma/client": "^5.5.2",
 		"axios": "^1.6.0",
 		"commander": "^11.1.0",
-		"node-cron": "^3.0.3"
+		"node-cron": "^3.0.3",
+		"prisma": "^5.5.2"
 	}
 }
