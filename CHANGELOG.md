@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/wajeht/cdns/compare/v1.0.0...v1.1.0) (2023-11-09)
+
+
+### Features
+
+* update readme ([d6ba65d](https://github.com/wajeht/cdns/commit/d6ba65dbfa42bcebb460e19529768d93dca13e1a))
+
 # 1.0.0 (2023-11-09)
 
 ### Bug Fixes
