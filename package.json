@@ -1,5 +1,5 @@
 {
-	"name": "cdns",
+	"name": "@wajeht/cdns",
 	"version": "1.0.0",
 	"description": "a cli tool to automatically update cloudflare dns records",
 	"main": "./dist/src/index.js",
