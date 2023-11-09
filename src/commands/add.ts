@@ -116,11 +116,11 @@ export async function add(params: Params) {
 				frequency: parseInt(frequency) || 60,
 			},
 		})
-		.then((res) => {
+		.then((res: unknown) => {
 			console.table([res]);
 			console.log('The above credentials has been added successfully!');
 		})
-		.catch((_err) => {
+		.catch((_err: unknown) => {
 			console.error('Something went wrong while adding credentials!');
 		});
 
