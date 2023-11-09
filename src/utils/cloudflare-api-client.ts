@@ -6,8 +6,12 @@ export interface ZoneInfo {
 
 export interface CloudflareApi {
 	getZoneByName(zoneName: string): Promise<ZoneInfo>;
-	getDnsRecords(zoneId: string): Promise<any>;
-	updateContent(zoneId: string, recordId: string, content: string): Promise<any>;
+	getDnsRecords(zoneId: string): Promise<Record<string, unknown>>;
+	updateContent(
+		zoneId: string,
+		recordId: string,
+		content: string,
+	): Promise<Record<string, unknown>>;
 }
 
 export class CloudflareApiClient implements CloudflareApi {
@@ -24,15 +28,19 @@ export class CloudflareApiClient implements CloudflareApi {
 		return response.data;
 	}
 
-	async getDnsRecords(zoneId: string): Promise<any> {
-		const response: AxiosResponse<any> = await this.axiosInstance.get(
+	async getDnsRecords(zoneId: string): Promise<Record<string, unknown>> {
+		const response: AxiosResponse<Record<string, unknown>> = await this.axiosInstance.get(
 			`/zones/${zoneId}/dns_records`,
 		);
 		return response.data;
 	}
 
-	async updateContent(zoneId: string, recordId: string, content: string): Promise<any> {
-		const response: AxiosResponse<any> = await this.axiosInstance.patch(
+	async updateContent(
+		zoneId: string,
+		recordId: string,
+		content: string,
+	): Promise<Record<string, unknown>> {
+		const response: AxiosResponse<Record<string, unknown>> = await this.axiosInstance.patch(
 			`/zones/${zoneId}/dns_records/${recordId}`,
 			{
 				content,

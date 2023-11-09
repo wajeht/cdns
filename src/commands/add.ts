@@ -12,13 +12,12 @@ type Params = {
 };
 
 export async function add(params: Params) {
-	let { cloudflare_email, cloudflare_api_token, zone_name, ip_address, frequency, interactive } =
-		params;
+	let { cloudflare_email, cloudflare_api_token, zone_name, ip_address, frequency } = params;
 
 	let sure = false;
 
 	while (!sure) {
-		if (interactive) {
+		if (params.interactive) {
 			if (!cloudflare_email) {
 				cloudflare_email = await input({
 					message: 'Enter your cloudflare cloudflare_email address',
@@ -121,7 +120,7 @@ export async function add(params: Params) {
 			console.table([res]);
 			console.log('The above credentials has been added successfully!');
 		})
-		.catch((err) => {
+		.catch((_err) => {
 			console.error('Something went wrong while adding credentials!');
 		});
 
