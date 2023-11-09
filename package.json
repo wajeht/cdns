@@ -10,7 +10,7 @@
 		"postinstall": "npm run build && node ./dist/src/scripts/post-install.js",
 		"cli": "npm unlink cdns && rm -rf ./dist && npm run build && chmod +x ./dist/src/index.js && npm link",
 		"dev": "npm run cli && tsc -w",
-		"build": "tsc",
+		"build": "tsc --noImplicitAny",
 		"publish": "chmod +x ./src/scripts/publish.sh && ./src/scripts/publish.sh",
 		"format:check": "prettier --check .",
 		"format": "prettier --write .",
