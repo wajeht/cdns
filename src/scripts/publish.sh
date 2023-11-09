@@ -6,6 +6,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Execute the publish.sh script
 $DIR/semantic-release.sh
 
+npm run build
 npm run format
 git add .
 

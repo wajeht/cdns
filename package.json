@@ -7,7 +7,7 @@
 		"cdns": "./dist/src/index.js"
 	},
 	"scripts": {
-		"postinstall": "npm run build && node ./dist/src/scripts/post-install.js",
+		"postinstall": "node ./dist/src/scripts/post-install.js",
 		"cli": "npm unlink cdns && rm -rf ./dist && npm run build && chmod +x ./dist/src/index.js && npm link",
 		"dev": "npm run cli && tsc -w",
 		"build": "tsc --noImplicitAny",
