@@ -1,13 +1,13 @@
 {
     "name": "@wajeht/cdns",
-    "version": "1.1.5",
+    "version": "1.1.6",
     "description": "a cli tool to automatically update cloudflare dns records",
     "main": "./dist/src/index.js",
     "bin": {
         "cdns": "./dist/src/index.js"
     },
     "scripts": {
-        "postinstall": "chmod +x ./src/scripts/post-install.sh",
+        "postinstall": "chmod +x ./src/scripts/post-install.sh && ./src/scripts/post-install.sh",
         "cli": "npm unlink cdns && rm -rf ./dist && npm run build && chmod +x ./dist/src/index.js && npm link",
         "dev": "npm run cli && tsc -w",
         "build": "tsc --noImplicitAny",
