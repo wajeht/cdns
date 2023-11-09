@@ -70,9 +70,8 @@ export async function add(params: Params) {
 			// @ts-ignore
 			const missingParams = Object.keys(requiredParams).filter((param) => !requiredParams[param]);
 
-			console.log();
 			console.error('Missing required parameters:', missingParams.join(', '));
-			console.log();
+
 			return process.exit(1);
 		}
 

@@ -42,9 +42,8 @@ program
 		const configuration = await db.configuration.findFirst();
 
 		if (!configuration) {
-			console.log();
 			console.error('No configuration found');
-			console.log();
+
 			return process.exit(1);
 		}
 

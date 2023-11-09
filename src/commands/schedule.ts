@@ -7,9 +7,8 @@ async function schedule() {
 	const configuration = await db.configuration.findFirst();
 
 	if (!configuration) {
-		console.log();
 		console.error('no configuration found');
-		console.log();
+
 		return process.exit(1);
 	}
 
@@ -36,7 +35,6 @@ async function schedule() {
 			currentIpAddress = (await getIPAddress()).trim();
 			console.log('done fetching to check current ip address!');
 		} catch (error) {
-			console.log();
 			console.error('cannot grab current ip address!');
 			return process.exit(1);
 		}
@@ -50,20 +48,18 @@ async function schedule() {
 			zoneInfo = await cloudflareApi.getZoneByName(configuration.zone_name);
 			console.log('done fetching cloudflare zone info!');
 		} catch (error) {
-			console.log();
 			console.error('cannot grab zoneInfo!');
 			// @ts-ignore
 			console.table((error as AxiosError)?.response?.data?.errors);
-			console.log();
+
 			return process.exit(1);
 		}
 
 		if (!zoneInfo.result[0]) {
-			console.log();
 			console.error('Zone info does not exit!');
 			// @ts-ignore
 			console.table((error as AxiosError)?.response?.data?.errors);
-			console.log();
+
 			return process.exit(1);
 		}
 
@@ -75,11 +71,10 @@ async function schedule() {
 			console.log('done fetching dns records!');
 			dnsRecords = dnsRecords.result.filter((r: { type: string }) => r.type === 'A');
 		} catch (error) {
-			console.log();
 			console.error('cannot grab dnsRecords!');
 			// @ts-ignore
 			console.table((error as AxiosError)?.response?.data?.errors);
-			console.log();
+
 			return process.exit(1);
 		}
 
@@ -90,17 +85,15 @@ async function schedule() {
 					await cloudflareApi.updateContent(zoneInfo.result[0].id, r.id, currentIpAddress);
 					console.log(`done updating dns records for id: ${r.id}!`);
 				} catch (error) {
-					console.log();
 					console.error(`something went wrong while updating record for id: ${r.id}!`);
 					// @ts-ignore
 					console.table((error as AxiosError)?.response?.data?.errors);
-					console.log();
+
 					return process.exit(1);
 				}
 			} else {
-				console.log();
 				console.log(`no need to update dns records for id: ${r.id}!`);
-				console.log();
+
 				return process.exit(1);
 			}
 		}
