@@ -1,9 +1,8 @@
 ## [1.1.1](https://github.com/wajeht/cdns/compare/v1.1.0...v1.1.1) (2023-11-09)
 
-
 ### Bug Fixes
 
-* any type error when install via npm pkg ([1f2354a](https://github.com/wajeht/cdns/commit/1f2354ae2e92be5b4c7ba30e717ec1eb9d82dc99))
+- any type error when install via npm pkg ([1f2354a](https://github.com/wajeht/cdns/commit/1f2354ae2e92be5b4c7ba30e717ec1eb9d82dc99))
 
 # [1.1.0](https://github.com/wajeht/cdns/compare/v1.0.0...v1.1.0) (2023-11-09)
 
