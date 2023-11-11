@@ -1,3 +1,13 @@
+# [1.2.0](https://github.com/wajeht/cdns/compare/v1.1.7...v1.2.0) (2023-11-11)
+
+
+### Features
+
+* add discord web hook url ([f7e999f](https://github.com/wajeht/cdns/commit/f7e999f5c26c5e646ab234a32ce1210b737c4d41))
+* alert to discord function ([05c9c17](https://github.com/wajeht/cdns/commit/05c9c176b9f8762838ca2c74099263a696b067c0))
+* **alert:** the ability to send to discord webhook url ([94668d9](https://github.com/wajeht/cdns/commit/94668d9f8be7bb497b846715427f9adb79033877))
+* custom date format function ([d826146](https://github.com/wajeht/cdns/commit/d826146a07adf4b07a3d7ed28fb1f7a2d2f7993b))
+
 ## [1.1.7](https://github.com/wajeht/cdns/compare/v1.1.6...v1.1.7) (2023-11-09)
 
 ### Bug Fixes
