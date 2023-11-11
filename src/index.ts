@@ -45,11 +45,10 @@ program
 
 		if (!configuration) {
 			console.error('No configuration found');
-
 			return process.exit(1);
 		}
 
-		spawn(path.resolve(path.join(__dirname, '../..', 'src', 'scripts', 'start.sh')), {
+		spawn(path.resolve(path.join(__dirname, '../..', 'src', 'scripts', 'schedule.sh')), {
 			shell: true,
 			stdio: 'inherit',
 			env: process.env,

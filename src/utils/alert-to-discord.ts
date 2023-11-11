@@ -1,6 +1,6 @@
-import { formatCustomDate } from './format-custom-date';
-import axios, { AxiosError } from 'axios';
 import { db } from '../database/db';
+import axios, { AxiosError } from 'axios';
+import { formatCustomDate } from './format-custom-date';
 
 export async function alertToDiscord(fromIpAddress: string, toIpAddress: string): Promise<boolean> {
 	const configuration = await db.configuration.findFirst();

@@ -23,6 +23,6 @@ pm2 startup
 pm2 save --force
 
 echo ""
-echo "backup scheduler has been started"
+echo "cdns scheduler has been started"
 echo ""
 exit 0
