@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import path from 'path';
 import { db } from './database/db';
 import { Command } from 'commander';
 import { add } from './commands/add';
@@ -48,7 +49,7 @@ program
 			return process.exit(1);
 		}
 
-		spawn(`./src/scripts/start.sh`, {
+		spawn(path.resolve(path.join(__dirname, '../..', 'src', 'scripts', 'start.sh')), {
 			shell: true,
 			stdio: 'inherit',
 			env: process.env,

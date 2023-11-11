@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const path_1 = __importDefault(require("path"));
 const db_1 = require("./database/db");
 const commander_1 = require("commander");
 const add_1 = require("./commands/add");
@@ -40,7 +44,7 @@ program
         console.error('No configuration found');
         return process.exit(1);
     }
-    (0, child_process_1.spawn)(`./src/scripts/start.sh`, {
+    (0, child_process_1.spawn)(path_1.default.resolve(path_1.default.join(__dirname, '../..', 'src', 'scripts', 'start.sh')), {
         shell: true,
         stdio: 'inherit',
         env: process.env,
