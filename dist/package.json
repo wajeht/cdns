@@ -1,6 +1,6 @@
 {
     "name": "@wajeht/cdns",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "a cli tool to schedule automatic updates for cloudflare dns records",
     "main": "./dist/src/index.js",
     "bin": {

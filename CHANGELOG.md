@@ -1,9 +1,8 @@
 ## [1.2.1](https://github.com/wajeht/cdns/compare/v1.2.0...v1.2.1) (2023-11-11)
 
-
 ### Bug Fixes
 
-* schedule path for bash was not workig on prod ([126e27f](https://github.com/wajeht/cdns/commit/126e27f5996ac4d425da1d684c4e0cc04db2aed3))
+- schedule path for bash was not workig on prod ([126e27f](https://github.com/wajeht/cdns/commit/126e27f5996ac4d425da1d684c4e0cc04db2aed3))
 
 # [1.2.0](https://github.com/wajeht/cdns/compare/v1.1.7...v1.2.0) (2023-11-11)
 
