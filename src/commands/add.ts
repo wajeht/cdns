@@ -9,10 +9,18 @@ type Params = {
 	zone_name: string;
 	ip_address: string;
 	frequency: string;
+	discord_webhook_url?: string;
 };
 
 export async function add(params: Params) {
-	let { cloudflare_email, cloudflare_api_token, zone_name, ip_address, frequency } = params;
+	let {
+		cloudflare_email,
+		cloudflare_api_token,
+		zone_name,
+		ip_address,
+		frequency,
+		discord_webhook_url,
+	} = params;
 
 	let sure = false;
 
@@ -51,8 +59,20 @@ export async function add(params: Params) {
 			if (!frequency) {
 				frequency = await input({
 					message: 'Enter frequency',
-					validate: (value) => value.length !== 0,
+					validate: function (value) {
+						if (value.length === 0) return true;
+						const parsedValue = parseInt(value);
+						const isNumber = !isNaN(parsedValue) && parsedValue > 0;
+						// prettier-ignore
+						return value.length !== 0 && isNumber ? true : 'The frequency must be in minutes. For example, 60 for every hour.';
+					},
 					default: '60',
+				});
+			}
+
+			if (!discord_webhook_url) {
+				discord_webhook_url = await input({
+					message: 'Enter discord webhook url (optional)',
 				});
 			}
 		}
@@ -74,7 +94,16 @@ export async function add(params: Params) {
 			return process.exit(1);
 		}
 
-		console.table([{ cloudflare_email, cloudflare_api_token, zone_name, ip_address, frequency }]);
+		console.table([
+			{
+				cloudflare_email,
+				cloudflare_api_token,
+				zone_name,
+				ip_address,
+				frequency,
+				discord_webhook_url,
+			},
+		]);
 
 		sure =
 			(await input({
@@ -85,7 +114,7 @@ export async function add(params: Params) {
 		if (!sure) {
 			const modify = await input({
 				message:
-					'What do you want to change? \nemail (e), cloudflare_api_token (a), zone_name (z), ip_address (p), frequency (f)?',
+					'What do you want to change? \nemail (e), cloudflare_api_token (a), zone_name (z), ip_address (p), frequency (f), discord_webhook_url (d)?',
 				validate: (value) => ['e', 'a', 'z', 'r', 'f'].includes(value) === true,
 			});
 
@@ -94,6 +123,7 @@ export async function add(params: Params) {
 			zone_name = modify === 'z' ? '' : zone_name;
 			ip_address = modify === 'p' ? '' : ip_address;
 			frequency = modify === 'f' ? '' : frequency;
+			discord_webhook_url = modify === 'd' ? '' : discord_webhook_url;
 		}
 	}
 
@@ -106,6 +136,7 @@ export async function add(params: Params) {
 				cloudflare_email,
 				cloudflare_api_token,
 				ip_address,
+				discord_webhook_url,
 				frequency: parseInt(frequency) || 60,
 			},
 			create: {
@@ -113,6 +144,7 @@ export async function add(params: Params) {
 				cloudflare_api_token,
 				zone_name,
 				ip_address,
+				discord_webhook_url,
 				frequency: parseInt(frequency) || 60,
 			},
 		})

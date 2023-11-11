@@ -25,6 +25,7 @@ program
 	.option('-z, --zone_name <string>', 'the zone which holds the record')
 	.option('-p, --ip_address <string>', 'the ip address of current server')
 	.option('-f, --frequency <number>', 'the frequency of the update')
+	.option('-d, --discord_webhook_url <string>', 'the discord webhook url')
 	.action(async (option) => await add(option));
 
 program

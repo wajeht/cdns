@@ -1,7 +1,14 @@
 import cron from 'node-cron';
 import { db } from '../database/db';
 import axios, { AxiosError } from 'axios';
-import { getIPAddress, ZoneInfo, CloudflareApi, CloudflareApiClient, timeToCron } from '../utils';
+import {
+	getIPAddress,
+	ZoneInfo,
+	CloudflareApi,
+	CloudflareApiClient,
+	timeToCron,
+	alertToDiscord,
+} from '../utils';
 
 async function schedule() {
 	const configuration = await db.configuration.findFirst();
@@ -85,6 +92,7 @@ async function schedule() {
 					console.log(`updating dns records for id: ${r.id}!`);
 					await cloudflareApi.updateContent(zoneInfo.result[0].id, r.id, currentIpAddress);
 					console.log(`done updating dns records for id: ${r.id}!`);
+					await alertToDiscord(r.content, currentIpAddress);
 				} catch (error) {
 					console.error(`something went wrong while updating record for id: ${r.id}!`);
 					// @ts-ignore

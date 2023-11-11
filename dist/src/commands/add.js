@@ -5,7 +5,7 @@ const db_1 = require("../database/db");
 const utils_1 = require("../utils");
 const prompts_1 = require("@inquirer/prompts");
 async function add(params) {
-    let { cloudflare_email, cloudflare_api_token, zone_name, ip_address, frequency } = params;
+    let { cloudflare_email, cloudflare_api_token, zone_name, ip_address, frequency, discord_webhook_url, } = params;
     let sure = false;
     while (!sure) {
         if (params.interactive) {
@@ -38,8 +38,20 @@ async function add(params) {
             if (!frequency) {
                 frequency = await (0, prompts_1.input)({
                     message: 'Enter frequency',
-                    validate: (value) => value.length !== 0,
+                    validate: function (value) {
+                        if (value.length === 0)
+                            return true;
+                        const parsedValue = parseInt(value);
+                        const isNumber = !isNaN(parsedValue) && parsedValue > 0;
+                        // prettier-ignore
+                        return value.length !== 0 && isNumber ? true : 'The frequency must be in minutes. For example, 60 for every hour.';
+                    },
                     default: '60',
+                });
+            }
+            if (!discord_webhook_url) {
+                discord_webhook_url = await (0, prompts_1.input)({
+                    message: 'Enter discord webhook url (optional)',
                 });
             }
         }
@@ -56,7 +68,16 @@ async function add(params) {
             console.error('Missing required parameters:', missingParams.join(', '));
             return process.exit(1);
         }
-        console.table([{ cloudflare_email, cloudflare_api_token, zone_name, ip_address, frequency }]);
+        console.table([
+            {
+                cloudflare_email,
+                cloudflare_api_token,
+                zone_name,
+                ip_address,
+                frequency,
+                discord_webhook_url,
+            },
+        ]);
         sure =
             (await (0, prompts_1.input)({
                 message: 'Are you sure these are the correct information? (y/n)',
@@ -64,7 +85,7 @@ async function add(params) {
             })) === 'y';
         if (!sure) {
             const modify = await (0, prompts_1.input)({
-                message: 'What do you want to change? \nemail (e), cloudflare_api_token (a), zone_name (z), ip_address (p), frequency (f)?',
+                message: 'What do you want to change? \nemail (e), cloudflare_api_token (a), zone_name (z), ip_address (p), frequency (f), discord_webhook_url (d)?',
                 validate: (value) => ['e', 'a', 'z', 'r', 'f'].includes(value) === true,
             });
             cloudflare_email = modify === 'e' ? '' : cloudflare_email;
@@ -72,6 +93,7 @@ async function add(params) {
             zone_name = modify === 'z' ? '' : zone_name;
             ip_address = modify === 'p' ? '' : ip_address;
             frequency = modify === 'f' ? '' : frequency;
+            discord_webhook_url = modify === 'd' ? '' : discord_webhook_url;
         }
     }
     await db_1.db.configuration
@@ -83,6 +105,7 @@ async function add(params) {
             cloudflare_email,
             cloudflare_api_token,
             ip_address,
+            discord_webhook_url,
             frequency: parseInt(frequency) || 60,
         },
         create: {
@@ -90,6 +113,7 @@ async function add(params) {
             cloudflare_api_token,
             zone_name,
             ip_address,
+            discord_webhook_url,
             frequency: parseInt(frequency) || 60,
         },
     })
