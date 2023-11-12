@@ -5,9 +5,10 @@ import { db } from './database/db';
 import { Command } from 'commander';
 import { add } from './commands/add';
 import { log } from './commands/log';
-import { stop } from './commands/stop';
 import { spawn } from 'child_process';
+import { stop } from './commands/stop';
 import { version } from '../package.json';
+import { update } from './commands/update';
 import { status } from './commands/status';
 
 const program = new Command();
@@ -28,6 +29,17 @@ program
 	.option('-f, --frequency <number>', 'the frequency of the update')
 	.option('-d, --discord_webhook_url <string>', 'the discord webhook url')
 	.action(async (option) => await add(option));
+
+program
+	.command('update')
+	.description('update cdns configuration')
+	.option('-e, --cloudflare_email <string>', 'cloudflare auth email')
+	.option('-a, --cloudflare_api_token <string>', 'cloudflare api token')
+	.option('-z, --zone_name <string>', 'the zone which holds the record')
+	.option('-p, --ip_address <string>', 'the ip address of current server')
+	.option('-f, --frequency <number>', 'the frequency of the update')
+	.option('-d, --discord_webhook_url <string>', 'the discord webhook url')
+	.action(async (option) => await update(option));
 
 program
 	.command('status')

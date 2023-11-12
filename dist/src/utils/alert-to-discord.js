@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.alertToDiscord = void 0;
-const format_custom_date_1 = require("./format-custom-date");
-const axios_1 = __importDefault(require("axios"));
 const db_1 = require("../database/db");
+const axios_1 = __importDefault(require("axios"));
+const format_custom_date_1 = require("./format-custom-date");
 async function alertToDiscord(fromIpAddress, toIpAddress) {
     const configuration = await db_1.db.configuration.findFirst();
     if (!configuration) {

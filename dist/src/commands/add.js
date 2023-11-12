@@ -86,7 +86,7 @@ async function add(params) {
         if (!sure) {
             const modify = await (0, prompts_1.input)({
                 message: 'What do you want to change? \nemail (e), cloudflare_api_token (a), zone_name (z), ip_address (p), frequency (f), discord_webhook_url (d)?',
-                validate: (value) => ['e', 'a', 'z', 'r', 'f'].includes(value) === true,
+                validate: (value) => ['e', 'a', 'z', 'p', 'f', 'd'].includes(value) === true,
             });
             cloudflare_email = modify === 'e' ? '' : cloudflare_email;
             cloudflare_api_token = modify === 'a' ? '' : cloudflare_api_token;
