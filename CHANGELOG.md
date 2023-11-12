@@ -1,9 +1,8 @@
 # [1.3.0](https://github.com/wajeht/cdns/compare/v1.2.1...v1.3.0) (2023-11-12)
 
-
 ### Features
 
-* update config ([14230e3](https://github.com/wajeht/cdns/commit/14230e37b025294334a99f6ab69a8698e8251983))
+- update config ([14230e3](https://github.com/wajeht/cdns/commit/14230e37b025294334a99f6ab69a8698e8251983))
 
 ## [1.2.1](https://github.com/wajeht/cdns/compare/v1.2.0...v1.2.1) (2023-11-11)
 
