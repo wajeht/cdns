@@ -1,9 +1,8 @@
 # [1.4.0](https://github.com/wajeht/cdns/compare/v1.3.0...v1.4.0) (2024-02-10)
 
-
 ### Features
 
-* update and upgrade ([4533f8b](https://github.com/wajeht/cdns/commit/4533f8b1a94c7ceb815f0c787f721398cce95ccd))
+- update and upgrade ([4533f8b](https://github.com/wajeht/cdns/commit/4533f8b1a94c7ceb815f0c787f721398cce95ccd))
 
 # [1.3.0](https://github.com/wajeht/cdns/compare/v1.2.1...v1.3.0) (2023-11-12)
 
